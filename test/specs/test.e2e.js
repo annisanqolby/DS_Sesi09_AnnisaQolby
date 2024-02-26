@@ -31,5 +31,15 @@ describe('Swag Labs', () => {
         await LoginPage.login(process.env.USERNAME_NO_USER, process.env.PASSWORD_SAUCEDEMO)
         await loginPage.validatenoUserError()
     })
+    it('should get login error with no_password credentials', async () => {
+        await LoginPage.open()
+        await LoginPage.login(process.env.USERNAME_NO_PASSWORD, process.env.PASSWORD_NO_PASSWORD)
+        await loginPage.validatenopasswordError()
+    })
+    it('should get login error with empty credentials', async () => {
+        await LoginPage.open()
+        await LoginPage.login(process.env.USERNAME_EMPTY, process.env.PASSWORD_NO_PASSWORD)
+        await loginPage.validateemptyError()
+    })
 })
 
