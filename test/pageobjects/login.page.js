@@ -3,25 +3,31 @@ const Page = require('./page');
 
 
 class LoginPage extends Page {
-    //elemen collection
+    //elements collection
     get fieldUsername () {return $('#user-name');}
     get fieldPassword () {return $('#password');}
     get buttonLogin () {return $('#login-button');}
-    get errorLockedOutUser () {return $('//h3[text]="Epic sadface: Sorry, this user has been locked out."')}
+    get errorLockedOutUser () {return $('//h3[text()="Epic sadface: Sorry, this user has been locked out."]')}
+    get errornoUser () {return $('//h3[text()="Epic sadface: Username and password do not match any user in this service."]')}
 
     
     async login (username, password) {
-        console.log('USERNAME: ${process.env.USERNAME_STANDARD_USER}')
-        console.log('USERNAME: ${process.env.PASSWORD_SAUCEDEMO}')
-
-        await this.fieldUsername.setValue('process.env.USERNAME_STANDARD_USER');
-        await this.fieldPassword.setValue('process.env.PASSWORD_SAUCEDEMO');
+        await this.fieldUsername.waitForDisplayed({ timeout: 2500 });
+        await this.fieldUsername.setValue(username);
+        await this.fieldPassword.setValue(password);
         await this.buttonLogin.click();
     }
 
     async validateLockedOutUserError () {
-        expect(this.errorLockedOutUser).toBeDisplayed()
+        await this.errorLockedOutUser.waitForDisplayed({ timeout: 2500 });
+        await expect(this.errorLockedOutUser).toBeDisplayed()
     }
+
+    async validatenoUserError () {
+        await this.errornoUser.waitForDisplayed({ timeout: 4000 });
+        await expect(this.errornoUser).toBeDisplayed()
+    }
+
     open () {
         return super.open('/');
     }

@@ -1,7 +1,6 @@
 const { $ } = require('@wdio/globals')
 const Page = require('./page');
 
-
 class homePage extends Page {
     get iconCart () {return $('.shopping_cart_link');}
 
