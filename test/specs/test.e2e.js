@@ -2,7 +2,7 @@ const LoginPage = require('../pageobjects/login.page')
 const homePage = require('../pageobjects/home.page')
 const loginPage = require('../pageobjects/login.page')
 const problemhomePage = require('../pageobjects/problemhome.page')
-const errorUserPage = require('../pageobjects/errorUser.page')
+const visualuserPage = require('../pageobjects/visualUser.page')
 
 
 describe('Swag Labs', () => {
@@ -21,10 +21,10 @@ describe('Swag Labs', () => {
         await LoginPage.login(process.env.USERNAME_PROBLEM_USER, process.env.PASSWORD_SAUCEDEMO)
         await problemhomePage.validateproblemhomePage()
     })
-    it('should get login error with performance_glitch_user credentials', async () => {
+    it('should get login with visual_user credentials', async () => {
         await LoginPage.open()
-        await LoginPage.login(process.env.USERNAME_ERROR_USER, process.env.PASSWORD_SAUCEDEMO)
-        await errorUserPage.validateerrorUserPage()
+        await LoginPage.login(process.env.USERNAME_VISUAL_USER, process.env.PASSWORD_SAUCEDEMO)
+        await visualuserPage.validatevisualuserPage()
     })
     it('should get login error with no_user credentials', async () => {
         await LoginPage.open()

@@ -1,10 +1,10 @@
 const { $ } = require('@wdio/globals')
 const Page = require('./page');
 
-class errorUserPage extends Page {
+class visualUserPage extends Page {
     get errorimage () {return $('.shopping_cart_container visual_failure');}
 
-    async validateerrorUserPage() {
+    async validatevisualuserPage() {
         expect(browser).toHaveUrlContaining('/inventory.html')
         expect(this.errorimage).toBeDisplayed()
     }
@@ -14,7 +14,7 @@ class errorUserPage extends Page {
     }
 }
 
-module.exports = new errorUserPage();
+module.exports = new visualUserPage();
 
 
 
